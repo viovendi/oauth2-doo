@@ -1,0 +1,38 @@
+{
+  "name": "jpbernius/oauth2-doo",
+  "description": "doo OAuth 2.0 Client Provider for The PHP League OAuth2-Client",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Jan Philip Bernius",
+      "email": "janphilip@bernius.net",
+      "homepage": "https://janphilip.bernius.net"
+    }
+  ],
+  "keywords": [
+    "oauth",
+    "oauth2",
+    "client",
+    "authorization",
+    "authorisation",
+    "doo"
+  ],
+  "require": {
+    "php": ">=5.5.0",
+    "league/oauth2-client": "~1.1"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "~4.0",
+    "mockery/mockery": "~0.9"
+  },
+  "autoload": {
+    "psr-4": {
+      "JPBernius\\OAuth2\\Client\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "JPBernius\\OAuth2\\Client\\Test\\": "test/src/"
+    }
+  }
+}
