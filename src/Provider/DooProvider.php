@@ -190,4 +190,46 @@ class DooProvider extends AbstractProvider
         );
         
     }
+
+    /**
+     * Returns the default headers used by this provider.
+     *
+     * Typically this is used to set 'Accept' or 'Content-Type' headers.
+     *
+     * @return array
+     */
+    protected function getDefaultHeaders()
+    {
+        return [
+            'Accept' => 'application/hal+json'
+        ];
+    }
+
+    /**
+     * Builds request options used for requesting an access token.
+     *
+     * @param  array $params
+     * @return array
+     */
+    protected function getAccessTokenOptions(array $params)
+    {
+        $options = ['headers' => ['content-type' => 'application/json']];
+
+        if ($this->getAccessTokenMethod() === self::METHOD_POST) {
+            $options['body'] = $this->getAccessTokenBody($params);
+        }
+
+        return $options;
+    }
+
+    /**
+     * Returns the request body for requesting an access token.
+     *
+     * @param  array $params
+     * @return string
+     */
+    protected function getAccessTokenBody(array $params)
+    {
+        return json_encode($params);
+    }
 }
