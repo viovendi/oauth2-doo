@@ -8,7 +8,6 @@
 
 namespace JPBernius\OAuth2\Client\Provider;
 
-
 use League\OAuth2\Client\Grant\AbstractGrant;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
@@ -184,7 +183,11 @@ class DooProvider extends AbstractProvider
             return new AccessToken($data);
         }
 
-        throw new IdentityProviderException('Bad Request', 400, 'Data provided for issuing access_token is not correct');
+        throw new IdentityProviderException(
+            'Bad Request',
+            400,
+            'Data provided for issuing access_token is not correct'
+        );
         
     }
 }
