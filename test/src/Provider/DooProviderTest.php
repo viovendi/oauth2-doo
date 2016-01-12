@@ -89,4 +89,21 @@ class DooProiverTest extends \PHPUnit_Framework_TestCase
         $this->provider->setHttpClient($client);
         $token = $this->provider->getAccessToken('authorization_code', ['code' => 'mock_authorization_code']);
     }
+
+    public function testBearerHeaderWithAccessToken()
+    {
+        $response = m::mock('Psr\Http\Message\ResponseInterface');
+        $response->shouldReceive('getBody')->andReturn('{"response_status":200,"developer_message":"Success","user_message":"Success","data":{"access_token":"mock_access_token","refresh_token":null,"_links":{"self":{"href":"https://api.doo.net/v1/oauth"}}}}');
+        $response->shouldReceive('getHeader')->andReturn(['content-type' => 'application/hal+json']);
+        $response->shouldReceive('getStatusCode')->andReturn(200);
+
+        $client = m::mock('GuzzleHttp\ClientInterface');
+        $client->shouldReceive('send')->times(1)->andReturn($response);
+        $this->provider->setHttpClient($client);
+
+        $header = $this->provider->getBearerAuthorizationHeader();
+
+        $this->assertArrayHasKey('Authorization', $header);
+        $this->assertEquals('Bearer mock_access_token', $header['Authorization']);
+    }
 }
