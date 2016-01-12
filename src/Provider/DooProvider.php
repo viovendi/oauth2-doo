@@ -232,4 +232,10 @@ class DooProvider extends AbstractProvider
     {
         return json_encode($params);
     }
+
+    public function getBearerAuthorizationHeader()
+    {
+        $token = $this->getAccessToken('client_credentials')->getToken();
+        return $this->getAuthorizationHeaders($token);
+    }
 }
