@@ -8,6 +8,7 @@
 
 namespace JPBernius\OAuth2\Client\Provider;
 
+use GuzzleHttp\Client;
 use League\OAuth2\Client\Grant\AbstractGrant;
 use League\OAuth2\Client\Provider\AbstractProvider;
 use League\OAuth2\Client\Provider\Exception\IdentityProviderException;
@@ -85,6 +86,11 @@ class DooProvider extends AbstractProvider
         $options = array_diff_key($options, $configured);
 
         parent::__construct($options, $collaborators);
+
+        $this->setHttpClient(new Client(array_intersect_key(
+            $options,
+            array_flip(['verify', 'timeout'])
+        )));
     }
 
     /**
