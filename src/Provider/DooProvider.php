@@ -101,8 +101,8 @@ class DooProvider extends AbstractProvider
     protected function getConfigurableOptions()
     {
         return [
-            'urlAuthorize',
-            'urlAccessToken',
+            'uriAuthorize',
+            'uriAccessToken',
             'uriResourceOwnerDetails',
             'scopeSeparator',
             'responseError',
