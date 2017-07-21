@@ -194,7 +194,6 @@ class DooProvider extends AbstractProvider
             400,
             'Data provided for issuing access_token is not correct'
         );
-        
     }
 
     /**
